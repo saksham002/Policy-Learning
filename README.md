@@ -1,3 +1,8 @@
+# Description
+
+This code provides the implementation of Imitation Learning, Reinforcement Learning (RL) and Imitation-Seeded RL for MuJoCo (Multi-Joint dynamics with Contact) environments from the MuJoCo Gym.
+
+
 # Environment Setup
 
 ## For Linux
@@ -39,4 +44,19 @@ python scripts/train_agent.py --env_name <ENV> --exp_name <ALGO> [optional tags]
 | `scalar_log_freq`  | The frequency with which you want to log your metrics like loss and rewards     | positive integer                   |
 | `video_log_freq`   | The frequency with which you want to log the visual performance of your model   | positive integer                   |
 | `load_checkpoint`  | You can load a checkpoint model to resume training. However, your final submission will undergo uninterrupted training on our servers. | `<path to the checkpoint>`         |
+
+# Visualization
+
+We use TensorBoard for visualization purposes. On a local machine, you can run tensor board as follows:
+
+```bash
+tensorboard --logdir ../data
+```
+If you are using a remote server for training, use port forwarding to view the tensor board in your local browser.
+```bash
+tensorboard --logdir <path> --port 6006
+ssh -N -f -L localhost:16006:localhost:6006 <user@remote>
+
+# Now open http://localhost:16006 on your browser
+```
 
