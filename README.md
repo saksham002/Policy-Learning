@@ -1,4 +1,3 @@
-```markdown
 # Training
 
 The training can be initiated from the `A2` folder as follows:
