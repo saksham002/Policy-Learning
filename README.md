@@ -39,10 +39,10 @@ python scripts/train_agent.py --env_name <ENV> --exp_name <ALGO> [optional tags]
 |--------------------|---------------------------------------------------------------------------------|------------------------------------|
 | `env_name`         | The name of the MuJoCo Environment                                              | `Hopper-v4`, `HalfCheetah-v4`, `Ant-v4` |
 | `exp_name`         | The algorithm you want to use to train the policy                               | `imitation`, `RL`, `imitation-RL`  |
-| `no_gpu`           | Include this tag if you want to train on CPU. This assignment is designed to be feasible on a CPU. Therefore, having a GPU is not mandatory |                                    |
+| `no_gpu`           | Include this tag if you want to train on CPU. |                                    |
 | `scalar_log_freq`  | The frequency with which you want to log your metrics like loss and rewards     | positive integer                   |
 | `video_log_freq`   | The frequency with which you want to log the visual performance of your model   | positive integer                   |
-| `load_checkpoint`  | You can load a checkpoint model to resume training. However, your final submission will undergo uninterrupted training on our servers. | `<path to the checkpoint>`         |
+| `load_checkpoint`  | You can load a checkpoint model to resume training. | `<path to the checkpoint>`         |
 
 The configs and hyper-parameters used for model creation and training are defined in config.py. The best model (based on cumulative rewards from simulated trajectories) from one training execution for a set environment and algorithm will be saved with the name "model_<env_name>_<exp_name>.pth" inside the directory "best_models".
 
