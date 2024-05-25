@@ -131,10 +131,13 @@ def main():
 
     configs = exp_config.configs[args.env_name][args.exp_name]
 
-    data_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), "../../data")
+    data_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), "../data")
     model_save_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), "../best_models")
     if not (os.path.exists(data_path)):
         os.makedirs(data_path)
+        
+    if not (os.path.exists(model_save_path)):
+        os.makedirs(model_save_path)
 
     logdir = (
         args.exp_name
