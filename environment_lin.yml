@@ -1,4 +1,4 @@
-name: col864_a2
+name: policy-learning
 channels:
   - pytorch
   - defaults
