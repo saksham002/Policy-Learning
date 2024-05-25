@@ -1,15 +1,12 @@
 
 '''
-This file contains the configs used for Model creation and training. You need to give your best hyperparameters and the configs you used to get the best results for 
-every environment and experiment.  These configs will be automatically loaded and used to create and train your model in our servers.
+This file contains the configs used for Model creation and training.
 '''
-#You can add extra keys or modify to the values of the existing keys in bottom level of the dictionary.
 #DONT CHANGE THE OVERALL STRUCTURE OF THE DICTIONARY. 
 
 configs = {
     'Ant-v4': {
         "imitation":{
-            #You can add or change the keys here
             "hyperparameters": {
                 'lr' : 1e-3,
                 'hidden_dim' : 64,
@@ -21,8 +18,6 @@ configs = {
         },
 
         "RL":{
-            #An example set of hyperparameters is given below
-            #You can add or change the hyperparameters and other keys here here
                "hyperparameters": {
                     'n_layers_actor' : 3,
                     'n_layers_critic': 3,
@@ -42,7 +37,6 @@ configs = {
         },
 
          "imitation-RL":{
-            #You can add or change the keys here
                "hyperparameters": {
                     'n_layers_critic':2,
                     'hidden_dim': 64,
@@ -70,7 +64,6 @@ configs = {
 
     'Hopper-v4': {
         "imitation":{
-            #You can add or change the keys here
               "hyperparameters": {
                 'lr' : 1e-3,
                 'hidden_dim' : 64,
@@ -82,7 +75,6 @@ configs = {
         },
 
         "RL":{
-            #You can add or change the keys here
                "hyperparameters": {
                     'n_layers_actor' : 1,
                     'n_layers_critic': 1,
@@ -105,7 +97,6 @@ configs = {
 
     'HalfCheetah-v4': {
         "imitation":{
-            #You can add or change the keys here
               "hyperparameters": {
                 'lr' : 1e-3,
                 'hidden_dim' : 64,
@@ -116,7 +107,6 @@ configs = {
         },
 
         "RL":{
-            #You can add or change the keys here
                "hyperparameters": {
                     'n_layers_actor' : 1,
                     'n_layers_critic': 1,
@@ -138,7 +128,6 @@ configs = {
         },
         
         "imitation-RL":{
-            #You can add or change the keys here
                "hyperparameters": {
                 
             },
