@@ -500,5 +500,3 @@ class ImitationSeededRL(ImitationAgent):
                     torch.save(self.state_dict(), os.path.join(model_save_path, "model_" + self.args.env_name + "_" + self.args.exp_name + ".pth"))
                     self.max_reward = reward_cum
             return {'episode_loss': curr_loss, 'trajectories': trajs, 'current_train_envsteps': num} #you can return more metadata if you want to
-
-
