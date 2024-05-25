@@ -11,7 +11,7 @@ This code provides the implementation of Imitation Learning, Reinforcement Learn
 # Instruction to set up on Linux
 
 conda env create -f environment_lin.yml
-conda activate col864_a2
+conda activate policy-learning
 pip install -e .
 ```
 
@@ -20,8 +20,8 @@ pip install -e .
 ```bash
 # Environment setup for Win/Mac users.
 
-conda create -n col864_a2 python=3.9
-conda activate col864_a2
+conda create -n policy-learning python=3.9
+conda activate policy-learning
 conda install pytorch==1.12.1 torchvision==0.13.1 torchaudio==0.12.1 cudatoolkit=11.3 -c pytorch 
 pip install -r requirements.txt
 pip install -e .
