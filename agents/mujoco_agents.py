@@ -54,7 +54,6 @@ class ImitationAgent(BaseAgent):
     
     
     def update(self, observations, actions):
-
         pass
     
 
@@ -101,9 +100,6 @@ class ImitationAgent(BaseAgent):
 
                 # print statistics
                 running_loss += loss.item()   
-        
-        #*********YOUR CODE HERE******************
-
         return {'episode_loss': running_loss/total_size , 'trajectories': self.replay_buffer.paths, 'current_train_envsteps':num} #you can return more metadata if you want to
 
 
@@ -154,7 +150,6 @@ class RLAgent(BaseAgent):
         self.plot_critic_loss = []
 
     def forward(self, observation: torch.FloatTensor, action: torch.FloatTensor):
-        #*********YOUR CODE HERE******************
         mean, var = self.actor(observation.to(device))
         var = torch.diag_embed(var)
         batch_normal = MultivariateNormal(mean, var)
@@ -207,7 +202,6 @@ class RLAgent(BaseAgent):
         return critic_loss
         
     def update(self, observations, actions, advantage, rewards = None, next_observations = None, q_values = None):
-        #*********YOUR CODE HERE******************
         if self.hyperparameters['critic']:
             gamma = self.hyperparameters['discount']
             advantage_critic = []
@@ -245,7 +239,6 @@ class RLAgent(BaseAgent):
         return q_values
 
     def train_iteration(self, env, envsteps_so_far, render=False, itr_num=None, **kwargs):
-        #*********YOUR CODE HERE******************
         #self.train()
         max_ep_len = env.spec.max_episode_steps
         batch_size = self.hyperparameters['batch_size']
@@ -303,18 +296,7 @@ class RLAgent(BaseAgent):
 
 
 
-
-
-
-
 class ImitationSeededRL(ImitationAgent):
-    '''
-    Implement a policy gradient agent with imitation learning initialization.
-    You can use the ImitationAgent and RLAgent classes as parent classes.
-
-    Note: We will evaluate the performance on Ant domain only. 
-    If everything goes well, you might see an ant running and jumping as seen in lecture slides.
-    '''
     
     def __init__(self, observation_dim:int, action_dim:int, args = None, discrete:bool = False, **hyperparameters ):
         super(ImitationSeededRL,self).__init__(observation_dim, action_dim, args, False, **hyperparameters)
@@ -337,9 +319,7 @@ class ImitationSeededRL(ImitationAgent):
         self.running_critic_loss = 0.0
 
     def forward(self, observation: torch.FloatTensor, action: torch.FloatTensor):
-        #****YOUR CODE HERE*******
         mean, var = self.imi_agent.model(observation.to(device)),self.covar
-        
         var = torch.diag_embed(var)
         batch_normal = MultivariateNormal(mean, var)
         log_probs = batch_normal.log_prob(action)
@@ -347,7 +327,6 @@ class ImitationSeededRL(ImitationAgent):
 
     @torch.no_grad()
     def get_action(self, observation: torch.FloatTensor):
-        #****YOUR CODE HERE*******
         mean = self.imi_agent.model(observation.to(device))
         return mean.detach().to(device)
     
@@ -389,7 +368,6 @@ class ImitationSeededRL(ImitationAgent):
         return critic_loss
         
     def update(self, observations, actions, advantage, rewards = None, next_observations = None, q_values = None):
-        #****YOUR CODE HERE*******
         if self.hyperparameters['critic']:
             gamma = self.hyperparameters['discount']
             advantage_critic = []
@@ -424,7 +402,6 @@ class ImitationSeededRL(ImitationAgent):
         return q_values
     
     def train_iteration(self, env, envsteps_so_far, render=False, itr_num=None, **kwargs):
-        #****YOUR CODE HERE*******
         #self.train()
         if(itr_num<20 or (itr_num%21 == 0)):
                     train_info = self.imi_agent.train_iteration(env, envsteps_so_far , render, itr_num )
