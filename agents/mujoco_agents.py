@@ -20,19 +20,6 @@ from policies.experts import load_expert_policy
 device = torch.device('cpu')
 
 class ImitationAgent(BaseAgent):
-    '''
-    Please implement an Imitation Learning agent. Read scripts/train_agent.py to see how the class is used. 
-    
-    
-    Note: 1) You may explore the files in utils to see what helper functions are available for you.
-          2) You can add extra functions or modify existing functions. Dont modify the function signature of __init__ and train_iteration.  
-          3) The hyperparameters dictionary contains all the parameters you have set for your agent. You can find the details of parameters in config.py.  
-    
-    Usage of Expert policy:
-        Use self.expert_policy.get_action(observation:torch.Tensor) to get expert action for any given observation. 
-        Expert policy expects a CPU tensors. If your input observations are in GPU, then 
-        You can explore policies/experts.py to see how this function is implemented.
-    '''
 
     def __init__(self, observation_dim:int, action_dim:int, args = None, discrete:bool = False, **hyperparameters ):
         super().__init__()
@@ -55,22 +42,18 @@ class ImitationAgent(BaseAgent):
         self.loss = nn.MSELoss() 
 
     def forward(self, observation: torch.FloatTensor):
-        #*********YOUR CODE HERE******************
         action = self.model(observation) #change this to your action
         return action
 
 
     @torch.no_grad()
     def get_action(self, observation: torch.FloatTensor):
-        #*********YOUR CODE HERE******************
-        
         action = self.model(observation).detach() #change this to your action
         return action 
 
     
     
     def update(self, observations, actions):
-        #*********YOUR CODE HERE******************
 
         pass
     
@@ -147,13 +130,6 @@ class actor(nn.Module):
 
 class RLAgent(BaseAgent):
 
-    '''
-    Please implement an policy gradient agent. Read scripts/train_agent.py to see how the class is used. 
-    
-    
-    Note: Please read the note (1), (2), (3) in ImitationAgent class. 
-    '''
-
     def __init__(self, observation_dim:int, action_dim:int, args = None, discrete:bool = False, **hyperparameters ):
         super().__init__()
         self.hyperparameters = hyperparameters
@@ -187,7 +163,6 @@ class RLAgent(BaseAgent):
 
     @torch.no_grad()
     def get_action(self, observation: torch.FloatTensor):
-        #*********YOUR CODE HERE******************
         mean, var = self.actor(observation.to(device))
         return mean.detach().to(device)
     
