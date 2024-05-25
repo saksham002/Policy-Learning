@@ -16,8 +16,8 @@ from agents.base_agent import BaseAgent
 import utils.pytorch_util as ptu
 from policies.experts import load_expert_policy
 
-#device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
-device = torch.device('cpu')
+device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
+#device = torch.device('cpu')
 
 class ImitationAgent(BaseAgent):
     '''
