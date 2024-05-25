@@ -49,7 +49,7 @@ python scripts/train_agent.py --env_name <ENV> --exp_name <ALGO> [optional tags]
 TensorBoard can be used for visualization purposes. On a local machine, you can run tensor board as follows:
 
 ```bash
-tensorboard --logdir ../data
+tensorboard --logdir data/tensorboard_dir
 ```
 If you are using a remote server for training, use port forwarding to view the tensor board in your local browser.
 ```bash
