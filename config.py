@@ -56,11 +56,11 @@ configs = {
                     'critic' : True, 
                     'log' : 10,
                     'schedule' : 20,
-                    'num_itr' : 51,
+                    'num_itr' : 20001,
                     'p':0.75,
                     'sigma':0.01
             },
-            "num_iteration": 51,
+            "num_iteration": 20001,
 
             
         }
