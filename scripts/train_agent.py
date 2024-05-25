@@ -157,7 +157,8 @@ def main():
 
     setup_agent(args, configs)
     train_agent(args, configs)
-    torch.save(agent.state_dict(), os.path.join(model_save_path, "model_"+ args.env_name + "_"+ args.exp_name+".pth"))
+    if args.exp_name == "imitation":
+        torch.save(agent.state_dict(), os.path.join(model_save_path, "model_"+ args.env_name + "_"+ args.exp_name+".pth"))
     
 if __name__ == "__main__":
     main()
