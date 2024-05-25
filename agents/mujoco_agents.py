@@ -16,8 +16,8 @@ from agents.base_agent import BaseAgent
 import utils.pytorch_util as ptu
 from policies.experts import load_expert_policy
 
-device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
-#device = torch.device('cpu')
+#device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
+device = torch.device('cpu')
 
 class ImitationAgent(BaseAgent):
     '''
@@ -332,7 +332,7 @@ class RLAgent(BaseAgent):
 
 
 
-class ImitationSeededRL(BaseAgent):
+class ImitationSeededRL(ImitationAgent):
     '''
     Implement a policy gradient agent with imitation learning initialization.
     You can use the ImitationAgent and RLAgent classes as parent classes.
@@ -342,7 +342,7 @@ class ImitationSeededRL(BaseAgent):
     '''
     
     def __init__(self, observation_dim:int, action_dim:int, args = None, discrete:bool = False, **hyperparameters ):
-        super().__init__()
+        super(ImitationSeededRL,self).__init__(observation_dim, action_dim, args, False, **hyperparameters)
         self.hyperparameters = hyperparameters
         self.action_dim  = action_dim
         self.observation_dim = observation_dim
@@ -500,9 +500,5 @@ class ImitationSeededRL(BaseAgent):
                     torch.save(self.state_dict(), os.path.join(model_save_path, "model_" + self.args.env_name + "_" + self.args.exp_name + ".pth"))
                     self.max_reward = reward_cum
             return {'episode_loss': curr_loss, 'trajectories': trajs, 'current_train_envsteps': num} #you can return more metadata if you want to
-
-
-
-
 
 
